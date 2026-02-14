@@ -21,12 +21,6 @@ export default function Signup() {
   const { loading, error, token,otpUserId, resending,otpEmail } = useSelector((state) => state.auth);
   const [otp, setOtp] = useState("");
 
-  // Show error toast if signup fails
-  useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
-
-  // Redirect if OTP/User created
   useEffect(() => {
     if (otpUserId) {
       toast.success("Account created! Please verify OTP.");
@@ -95,7 +89,6 @@ export default function Signup() {
         className="w-full max-w-md"
       >
         <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] p-8">
-          {/* Header */}
           <div className="text-center mb-4">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 mb-2">
               <UserPlus className="w-6 h-6 text-white" />
@@ -114,7 +107,6 @@ export default function Signup() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name */}
             <div className="relative">
               <input
                 type="text"
@@ -137,7 +129,6 @@ export default function Signup() {
               {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
             </div>
 
-            {/* Email */}
             <div className="relative">
               <input
                 type="email"
@@ -160,7 +151,6 @@ export default function Signup() {
               {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
 
-            {/* Password */}
             <div className="relative">
               <input
                 type="password"
@@ -183,7 +173,6 @@ export default function Signup() {
               {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
             </div>
 
-            {/* Button */}
             <motion.button
               type="submit"
               whileHover={{ scale: 1.02 }}
@@ -195,7 +184,6 @@ export default function Signup() {
             </motion.button>
           </form>
 
-          {/* Footer */}
           <p className="text-center mt-6 text-gray-600">
             Already have an account?{" "}
             <NavLink to="/login" className="text-indigo-600 hover:text-indigo-700">
