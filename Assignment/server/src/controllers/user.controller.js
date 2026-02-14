@@ -42,11 +42,16 @@ const registerUser= asyncHandler( async (req,res)=>{
         fullname,
         password,
         emailOTP: otp,
-        emailOTPExpires: Date.now() + 10 * 60 * 1000, // 10 min
+        emailOTPExpires: Date.now() + 10 * 60 * 1000,
         isEmailVerified: false
     })
 
-    await sendOTPEmail(email, otp);
+    //As sometimes nodemailer fails to send otp to mail on Render as free-tier blocks the connection or times out
+    try {
+        await sendOTPEmail(email, otp);
+    } catch (err) {
+        console.log(`Email failed (Render limitation). OTP for ${email}: ${otp}`);
+    }
 
     return res.status(201).json(
         new apiResponse(

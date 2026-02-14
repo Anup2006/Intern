@@ -54,7 +54,7 @@ export default function Signup() {
       dispatch(setOtpEmail(email));
     })
     .catch((err) => {
-      toast.error(err?.message || "Signup failed, Account already created");
+      toast.error(err?.message || "Signup failed");
     });
   };
 
