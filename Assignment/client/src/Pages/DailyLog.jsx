@@ -126,7 +126,7 @@ export default function DailyLog() {
                 <AnimatePresence>
                   {todayActivities.map((activity) => (
                     <ActivityCard
-                      key={activity._id} // use _id
+                      key={activity._id} 
                       activity={activity}
                       onDelete={handleDelete}
                     />

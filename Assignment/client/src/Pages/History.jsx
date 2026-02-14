@@ -71,7 +71,6 @@ export default function History() {
     });
   };
 
-  // Calendar logic
   const firstDayOfMonth = new Date(calendarYear, calendarMonth, 1).getDay();
   const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
   const dates = [];

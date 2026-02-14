@@ -223,41 +223,6 @@ const updateUserAvatar = asyncHandler(async(req,res)=>{
     .json(new apiResponse(200,{user:user},"User avatar is updated successfully"))
 })
 
-const refreshAccessToken=asyncHandler(async(req,res)=>{
-    const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken
-    if(!incomingRefreshToken){
-        throw new apiError(401,"Unauthorized access")
-    }
-
-    try {
-        const decodedToken = jwt.verify(incomingRefreshToken,process.env.REFRESH_TOKEN_SECRET)
-    
-        const user = await User.findById(decodedToken?._id)
-        if(!user){
-            throw new apiError(401,"Invalid rfresh token")
-        }
-    
-        if(incomingRefreshToken !== user?.refreshToken){
-            throw new apiError("401","Refresh token expired or used")
-        }
-    
-        const options={
-            httpOnly:true,
-            secure:false,
-        }
-    
-        const {accessToken,newRefreshToken}=await generateAccessAndRefreshTokens(user._id) 
-    
-        return res.status(200)
-        .cookie("accessToken",accessToken,options)
-        .cookie("refreshToken",newRefreshToken,options)
-        .json(new apiResponse(200,{accessToken,refreshToken:newRefreshToken},"Access token refreshed"))
-    } catch (error) {
-        throw new apiError(401,"Invalid refresh token")
-    }
-
-})
-
 const forgetPassword=asyncHandler(async(req,res)=>{
     const {email,newPassword,confPassword}=req.body
     
@@ -424,7 +389,6 @@ export {
     registerUser,
     loginUser,
     logOutUser,
-    refreshAccessToken,
     forgetPassword,
     updateUserAvatar,
     googleLogin,

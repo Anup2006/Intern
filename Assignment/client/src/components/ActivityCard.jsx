@@ -41,7 +41,7 @@ export default function ActivityCard({ activity, onDelete }) {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => onDelete(activity._id)} // <-- fixed here
+          onClick={() => onDelete(activity._id)} 
           className="opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-red-50 rounded-lg"
         >
           <Trash2 className="w-4 h-4 text-red-500" />

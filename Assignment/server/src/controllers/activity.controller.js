@@ -3,7 +3,6 @@ import { apiError } from "../utils/apiError.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import { Activity } from "../models/activity.model.js";
 
-// Add activity
 const addActivity = asyncHandler(async (req, res) => {
   const { name, duration, category, date } = req.body;
 
@@ -20,7 +19,6 @@ const addActivity = asyncHandler(async (req, res) => {
   res.status(201).json(new apiResponse(201, activity, "Activity added successfully"));
 });
 
-// Get activities by date
 const getActivitiesByDate = asyncHandler(async (req, res) => {
   const { date } = req.query;
   if (!date) throw new apiError(400, "Date is required");
@@ -29,7 +27,6 @@ const getActivitiesByDate = asyncHandler(async (req, res) => {
   res.status(200).json(new apiResponse(200, activities, "Activities fetched"));
 });
 
-// Delete activity
 const deleteActivity = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
@@ -40,13 +37,11 @@ const deleteActivity = asyncHandler(async (req, res) => {
   res.status(200).json(new apiResponse(200, null, "Activity deleted successfully"));
 });
 
-// Fetch History 
 const getAllActivities = asyncHandler(async (req, res) => {
   const activities = await Activity.find({ user: req.user._id }).sort({ date: -1, createdAt: -1 });
   res.status(200).json(new apiResponse(200, activities, "All activities fetched"));
 });
 
-// Fetch weekly activities for analytics
 const getWeeklyActivities = asyncHandler(async (req, res) => {
   const today = new Date();
   const past7Days = new Date();

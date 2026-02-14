@@ -25,14 +25,12 @@ export default function Dashboard({ children }) {
     navigate("/login", { replace: true });
   };
 
-  // Update desktop check on resize
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 640);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Redirect if not logged in
   useEffect(() => {
     if (!token) navigate("/login", { replace: true });
   }, [token, navigate]);
@@ -129,7 +127,6 @@ export default function Dashboard({ children }) {
         </div>
       </motion.aside>
 
-      {/* Overlay for mobile sidebar */}
       {sidebarOpen && !isDesktop && (
         <div
           onClick={() => setSidebarOpen(false)}

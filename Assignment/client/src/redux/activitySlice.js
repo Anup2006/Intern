@@ -146,19 +146,19 @@ export const activitySlice = createSlice({
             state.error = action.payload;
         })
 
-    // Weekly analytics
-      .addCase(fetchWeeklyActivities.pending, (state) => {
-        state.loadingWeekly = true;
-        state.errorWeekly = null;
-      })
-      .addCase(fetchWeeklyActivities.fulfilled, (state, action) => {
-        state.loadingWeekly = false;
-        state.weekly = action.payload;
-      })
-      .addCase(fetchWeeklyActivities.rejected, (state, action) => {
-        state.loadingWeekly = false;
-        state.errorWeekly = action.payload;
-      });
+        // Weekly analytics
+        .addCase(fetchWeeklyActivities.pending, (state) => {
+            state.loadingWeekly = true;
+            state.errorWeekly = null;
+        })
+        .addCase(fetchWeeklyActivities.fulfilled, (state, action) => {
+            state.loadingWeekly = false;
+            state.weekly = action.payload;
+        })
+        .addCase(fetchWeeklyActivities.rejected, (state, action) => {
+            state.loadingWeekly = false;
+            state.errorWeekly = action.payload;
+        });
         
   },
 });
