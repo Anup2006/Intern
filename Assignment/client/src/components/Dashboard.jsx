@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from '../redux/authSlice.js';
 
 const navItems = [
-  { path: '/home', label: 'Daily Log', icon: LayoutDashboard },
-  { path: '/history', label: 'History', icon: History },
-  { path: '/analytics', label: 'Analytics', icon: BarChart3 },
+  { path: '/app/home', label: 'Daily Log', icon: LayoutDashboard },
+  { path: '/app/history', label: 'History', icon: History },
+  { path: '/app/analytics', label: 'Analytics', icon: BarChart3 },
 ];
 
 export default function Dashboard({ children }) {

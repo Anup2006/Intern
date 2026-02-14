@@ -40,8 +40,33 @@ const deleteActivity = asyncHandler(async (req, res) => {
   res.status(200).json(new apiResponse(200, null, "Activity deleted successfully"));
 });
 
+// Fetch History 
+const getAllActivities = asyncHandler(async (req, res) => {
+  const activities = await Activity.find({ user: req.user._id }).sort({ date: -1, createdAt: -1 });
+  res.status(200).json(new apiResponse(200, activities, "All activities fetched"));
+});
+
+// Fetch weekly activities for analytics
+const getWeeklyActivities = asyncHandler(async (req, res) => {
+  const today = new Date();
+  const past7Days = new Date();
+  past7Days.setDate(today.getDate() - 6); 
+
+  const startDate = past7Days.toISOString().split("T")[0];
+  const endDate = today.toISOString().split("T")[0];
+
+  const activities = await Activity.find({
+    user: req.user._id,
+    date: { $gte: startDate, $lte: endDate },
+  }).sort({ date: 1, createdAt: 1 });
+
+  res.status(200).json(new apiResponse(200, activities, "Weekly activities fetched"));
+});
+
 export{
     addActivity,
     getActivitiesByDate,
-    deleteActivity
+    deleteActivity,
+    getAllActivities,
+    getWeeklyActivities
 }

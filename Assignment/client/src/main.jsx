@@ -22,6 +22,7 @@ import Login from "./Pages/AuthLanding/Login.jsx";
 import Signup from "./Pages/AuthLanding/Signup.jsx";
 import ForgetPassword from "./Pages/AuthLanding/ForgetPassword.jsx";
 import DailyLog from "./Pages/DailyLog.jsx"
+import History from "./Pages/History.jsx";
 
 const GoogleAuthWrapper=({ children }) => {
   return (
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
         <Route path="/app" element={<App />}>
           <Route index element={<DailyLog/>} /> 
           <Route path="home" element={<DailyLog/>} />
+          <Route path="history" element={<History/>} />
         </Route>
       </Route>
     </>
