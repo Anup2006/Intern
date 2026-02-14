@@ -21,6 +21,7 @@ import App from "./App.jsx";
 import Login from "./Pages/AuthLanding/Login.jsx"; 
 import Signup from "./Pages/AuthLanding/Signup.jsx";
 import ForgetPassword from "./Pages/AuthLanding/ForgetPassword.jsx";
+import DailyLog from "./Pages/DailyLog.jsx"
 
 const GoogleAuthWrapper=({ children }) => {
   return (
@@ -48,6 +49,8 @@ const router = createBrowserRouter(
       {/* Protected Routes */}
       <Route element={<ProtectedRoutes />}>
         <Route path="/app" element={<App />}>
+          <Route index element={<DailyLog/>} /> 
+          <Route path="home" element={<DailyLog/>} />
         </Route>
       </Route>
     </>

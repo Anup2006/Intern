@@ -5,8 +5,9 @@ export default function App() {
 
   return (
     <div className="app">
-      <Dashboard/>
-      <Outlet/>
+      <Dashboard>
+        <Outlet/>
+      </Dashboard>
     </div>
   );
 }

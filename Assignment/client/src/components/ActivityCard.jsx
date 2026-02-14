@@ -20,7 +20,7 @@ export default function ActivityCard({ activity, onDelete }) {
     >
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <h3 className="mb-2">{activity.name}</h3>
+          <h3 className="mb-2 font-medium text-gray-800">{activity.name}</h3>
 
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 text-gray-600 text-sm">
@@ -30,7 +30,7 @@ export default function ActivityCard({ activity, onDelete }) {
 
             <span
               className={`px-3 py-1 rounded-full text-white text-sm ${
-                categoryColors[activity.category]
+                categoryColors[activity.category] || 'bg-gray-500'
               }`}
             >
               {activity.category}
@@ -41,7 +41,7 @@ export default function ActivityCard({ activity, onDelete }) {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => onDelete(activity.id)}
+          onClick={() => onDelete(activity._id)} // <-- fixed here
           className="opacity-0 group-hover:opacity-100 transition-opacity p-2 hover:bg-red-50 rounded-lg"
         >
           <Trash2 className="w-4 h-4 text-red-500" />

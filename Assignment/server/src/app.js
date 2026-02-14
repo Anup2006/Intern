@@ -23,7 +23,9 @@ app.use(cookieParser())
 
 //router import 
 import userRouter from "./routes/user.routes.js"   
+import activityRouter from "./routes/activity.routes.js";
 
 app.use("/api/v1/users",userRouter);
+app.use("/api/v1/activities",activityRouter);
 
 export {app}
