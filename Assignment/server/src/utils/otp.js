@@ -2,16 +2,15 @@ import nodemailer from "nodemailer";
 
 const sendOTPEmail = async (email, otp) => {
   const transporter = nodemailer.createTransport({
-    host: "smtp.sendgrid.net",
-    port: 587,
+    service: "gmail",
     auth: {
-      user: "apikey", 
-      pass: process.env.SENDGRID_API_KEY,
-    },
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
   });
 
   await transporter.sendMail({
-    from: process.env.EMAIL_USER,
+    from: `"Your App" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: "Verify your email",
     html: `<h2>Your OTP is ${otp}</h2><p>Valid for 10 minutes</p>`

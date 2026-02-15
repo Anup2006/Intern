@@ -51,6 +51,12 @@ export default function Login() {
     });
   };
 
+  useEffect(() => {
+    if (token) {
+      navigate("/app", { replace: true });
+    }
+  }, [token,navigate]);
+
   return (
     <div className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-br from-[#F5F7FA] via-[#E8EBF5] to-[#F5F7FA] p-4">
       <motion.div

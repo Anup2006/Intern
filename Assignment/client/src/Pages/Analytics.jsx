@@ -24,10 +24,13 @@ export default function Analytics() {
   const weeklyData = React.useMemo(() => {
     if (!weeklyActivities || !weeklyActivities.length) return [];
 
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    return days.map((dayName, idx) => {
-      const dayDate = new Date();
-      dayDate.setDate(dayDate.getDate() - (6 - idx));
+    const today = new Date();
+    const result = [];
+
+    for (let i = 6; i >= 0; i--) {
+      const dayDate = new Date(today);
+      dayDate.setDate(today.getDate() - i);
+      const dayName = dayDate.toLocaleDateString("en-US", { weekday: "short" });
       const dateStr = dayDate.toISOString().split("T")[0];
 
       const dayActivities = weeklyActivities.filter((a) => a.date === dateStr);
@@ -47,9 +50,12 @@ export default function Analytics() {
         dayData.total += activity.duration;
       });
 
-      return dayData;
-    });
+      result.push(dayData);
+    }
+
+    return result;
   }, [weeklyActivities]);
+
 
   const stats = React.useMemo(() => {
     if (!weeklyData.length) return { totalDuration: 0, mostActiveDay: "None", topCategory: "None" };

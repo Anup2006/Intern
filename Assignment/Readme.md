@@ -32,7 +32,7 @@ The emphasis of this project is not just functionality, but also code organizati
 * **Express.js** – REST API framework
 * **MongoDB** – NoSQL database (MongoDB Atlas account for cloud database)
 * **Mongoose** – ODM for MongoDB
-* **JWT and OAuth2 (Google)** – Authentication 
+* **JWT and OAuth2 (Google)** – Authentication with OTP verification
 * **Multer** – File handling middleware
 * **Cloudinary** – Media storage
 * **NodeMailer** - To send OTP to emails 
@@ -74,7 +74,7 @@ GOOGLE_CLIENT_SECRET=your_client_secret
 GOOGLE_CLIENT_ID=your_id
 GOOGLE_REDIRECT_URI=URL
 EMAIL_USER=your_mail
-SENDGRID_API_KEY=your_key
+EMAIL_Pass=your_pass
 ```
 
 Start the server:
@@ -171,23 +171,12 @@ This visualization demonstrates a practical use of Three.js for analytics, makin
 ## Assumptions & Decisions
 
 * The application uses a REST-based API, as it keeps the system simple and easy to debug
-* JWT authentication was chosen to avoid server-side session storage 
+* JWT authentication was chosen to avoid server-side session storage with OTP verification 
 * OAuth2 (Google) Authentication
 * MongoDB (MongoDB Atlas) was selected for its flexibility and strong aggregation support
 * Analytics are calculated on the backend to reduce duplication of logic on the frontend
 * Tailwind CSS was used to speed up UI development and maintain consistent styling
 * Three.js was included as a future-facing dependency, even though it is not actively used in the current implementation
-
----
-
-## OTP / Email Note
-
-* Email OTP functionality may not work on Render/Vercel due to free-tier SMTP restrictions.
-* For evaluation purposes, the OTP is logged in the backend console and returned in API response.
-* Evaluators can use the logged OTP to verify accounts and continue testing.
-* This ensures the signup → OTP → login flow works reliably in production.
-
----
 
 ## Final Notes
 

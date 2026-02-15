@@ -46,12 +46,7 @@ const registerUser= asyncHandler( async (req,res)=>{
         isEmailVerified: false
     })
 
-    //As sometimes nodemailer fails to send otp to mail on Render as free-tier blocks the connection or times out
-    try {
-        await sendOTPEmail(email, otp);
-    } catch (err) {
-        console.log(`Email failed (Render limitation). OTP for ${email}: ${otp}`);
-    }
+    await sendOTPEmail(email, otp);
 
     return res.status(201).json(
         new apiResponse(
@@ -219,8 +214,8 @@ const updateUserAvatar = asyncHandler(async(req,res)=>{
                 avatar:avatar.url,
             }
         },
-        {
-            new:true,
+        { 
+            returnDocument: "after" 
         }
     )
 
